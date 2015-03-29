@@ -23,7 +23,6 @@ class RangeFilterAsset extends AssetBundle {
 
     public $depends = [
         'yii\web\JqueryAsset',
-        'leandrogehlen\querybuilder\BootstrapAsset',
     ];
 
 } 

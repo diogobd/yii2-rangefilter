@@ -1,6 +1,6 @@
 <?php
 
-namespace app\components\widgets;
+namespace diogobd\rangefilter;
 
 
 use diogobd\rangefilter\RangeFilterAsset;
@@ -16,7 +16,7 @@ use yii\widgets\InputWidget;
  * @author Diogo Biolo D'Agostini <diogobd@gmail.com>
  * @since 1.0.0
  */
-class QueryBuilder extends InputWidget
+class RangeFilter extends InputWidget
 {
     /**
      * @var array configuration options
