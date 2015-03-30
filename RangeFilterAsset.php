@@ -14,7 +14,7 @@ class RangeFilterAsset extends AssetBundle {
     public $sourcePath = '@bower/jquery-rangefilter/src';
 
     public $js = [
-        'range-filter.js',
+        'range-filter.standalone.js',
     ];
 
     public $css = [
