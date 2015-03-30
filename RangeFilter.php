@@ -3,7 +3,6 @@
 namespace diogobd\rangefilter;
 
 
-use diogobd\rangefilter\RangeFilterAsset;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
@@ -56,31 +55,18 @@ class RangeFilter extends InputWidget
      */
     public function run()
     {
-        $hiddenId = ArrayHelper::remove($this->options, 'id');
-
-        /*if ($this->hasModel()) {
-            $value = Html::getAttributeValue($this->model, $this->attribute);
-            echo Html::activeHiddenInput($this->model, $this->attribute, ['id' => $hiddenId]);
-        } else {
-            $value = $value = $this->value;
-            echo Html::hiddenInput($this->name, $value, ['id' => $hiddenId]);
-        }*/
-
+        $id = $this->getId();
+        $hiddenId = $id.'-hidden';
         echo Html::hiddenInput($this->name, null, ['id' => $hiddenId]);
+        echo Html::tag('div', null, ['id' => $id]);
 
-        $id = $this->getId() . '-range';
-        $this->options['id'] = $id;
         $var = Inflector::variablize($id);
-        //echo Html::tag('textarea', Html::encode($value), $this->options);
-
         $view = $this->getView();
         RangeFilterAsset::register($view);
-
         $options = Json::encode($this->pluginOptions);
-
-        $view->registerJs("var {$var} = jQuery('#$id').rangeFilter({$options});");
-
-        /*$view->registerJs("var {$var} = CodeMirror.fromTextArea(document.getElementById('$id'), $options);");
-        $view->registerJs("{$var}.on('change', function(editor){jQuery('#$hiddenId').val(editor.getValue());});");*/
+        $view->registerJs("var {$var} = jQuery('#$id');");
+        $view->registerJs("var {$var}.rangeFilter({$options});");
+        $view->registerJs("jQuery('#$hiddenId').val(JSON.stringify({$var}.rangeFilter('getFilter')));");
+        $view->registerJs("{$var}.on('rangefilter.change', function(){ jQuery('#$hiddenId').val(JSON.stringify({$var}.rangeFilter('getFilter'))); });");
     }
 }
