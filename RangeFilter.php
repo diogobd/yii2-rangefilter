@@ -65,7 +65,7 @@ class RangeFilter extends InputWidget
         RangeFilterAsset::register($view);
         $options = Json::encode($this->pluginOptions);
         $view->registerJs("var {$var} = jQuery('#$id');");
-        $view->registerJs("var {$var}.rangeFilter({$options});");
+        $view->registerJs("{$var}.rangeFilter({$options});");
         $view->registerJs("jQuery('#$hiddenId').val(JSON.stringify({$var}.rangeFilter('getFilter')));");
         $view->registerJs("{$var}.on('rangefilter.change', function(){ jQuery('#$hiddenId').val(JSON.stringify({$var}.rangeFilter('getFilter'))); });");
     }
