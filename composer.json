@@ -8,7 +8,7 @@
         "issues": "https://github.com/diogobd/yii2-rangefilter/issues",
         "source": "https://github.com/diogobd/yii2-rangefilter"
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "authors": [
         {
             "name": "Diogo Biolo D'Agostini",
